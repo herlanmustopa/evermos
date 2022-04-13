@@ -5,59 +5,64 @@
       name: 'EventDetails',
     }"
   > -->
-  <div class="event-card">
-    <h4>Testing</h4>
-    <div class="status">
-      <span v-if="statusColorR" class="status-icon-r"></span>
-      <span v-else-if="statusColorG" class="status-icon-g"></span>
-      <span>Status: </span>
+  <Skeleton
+    v-if="!listAlbums"
+    :count="7"
+    width="200px"
+    height="250px"
+    class="flex justify-center gap-5 flex-wrap lg:justify-between mt-11"
+  />
+  <div v-else class="grid-container">
+    <div v-for="poh in listAlbums.splice(0, 10)" :key="poh.id">
+      <div class="event-card">
+        <h4 class="text-truncate">{{ poh.title }}</h4>
+        <div class="status">
+          <img :src="poh.thumbnailUrl" />
+        </div>
+      </div>
     </div>
-    <!-- <img :src="event.image" /> -->
   </div>
   <!-- </router-link> -->
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
   name: 'CardView',
-
-  props: {
-    event: {
-      type: Object,
-      required: true,
-    },
-  },
-  data() {
-    return {
-      //   status: this.event.status,
-    }
-  },
+  data() {},
   computed: {
-    statusColorR() {
-      if (this.status === 'Dead') {
-        return 1
-      } else return 0
-    },
-    statusColorG() {
-      if (this.status === 'Alive') {
-        return 1
-      } else return 0
+    ...mapState(['posts']),
+    listAlbums() {
+      return this.$store.getters.listAlbums
     },
   },
 }
 </script>
 
-<style>
+<style scoped>
+.text-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.grid-container {
+  display: grid;
+  gap: 30px 50px;
+  flex-direction: row;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  /* background-color: #2196f3; */
+  /* padding: 10px; */
+}
 .event-card {
   width: 200px;
-  height: auto;
+  /* height: auto; */
   min-height: 250px;
   background: rgb(60, 62, 68);
   border-radius: 20px;
   overflow: hidden;
   padding: 10px 15px;
-  margin-bottom: 24px;
-  margin-right: 10px;
+  /* margin-bottom: 24px; */
+  margin-right: 50px;
   transition: all 0.2s linear;
   cursor: pointer;
   color: white;

@@ -5,8 +5,11 @@
 
   <div class="flex">
     <Head />
-
-    <Card />
+    <!-- <div v-for="pos in posts.splice(0, 5)" :key="pos.id"> -->
+    <!-- </div> -->
+    <div class="grid-container card">
+      <Card />
+    </div>
   </div>
   <!-- <div>
     <ul>
@@ -22,15 +25,15 @@
 </template>
 
 <script>
-import Head from '~/components/Main_Head'
 // import { mapState } from 'vuex'
+import Head from '~/components/Main_Head'
 export default {
   name: 'IndexPage',
   components: {
     Head,
   },
   computed: {
-    // mapState(['posts']),
+    // ...mapState(['posts']),
     listAlmbums() {
       return this.$store.state.photos
     },
@@ -46,10 +49,22 @@ export default {
   display: flex;
   flex-direction: column;
   margin: 0 0 0px 50px;
-  /* background-color: blue; */
 
   @media (min-width: 768px) {
     flex-direction: row-reverse;
   }
 }
+
+/* .card {
+  justify-items: start;
+  background-color: aquamarine;
+} */
+
+/* .grid-container {
+  display: grid;
+  flex-direction: row;
+  grid-template-columns: auto auto auto;
+  background-color: #2196f3;
+  padding: 10px;
+} */
 </style>
