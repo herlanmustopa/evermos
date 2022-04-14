@@ -51,7 +51,7 @@ export default {
       } else if (time >= 12 && time < 6) {
         return 'Good afternoon'
       } else {
-        return 'Good night'
+        return 'Good afternoon'
       }
       //
     },
