@@ -37,28 +37,28 @@
 <script>
 // import { mapState } from 'vuex'
 
-// const modulesTodos = 'modules/todos/'
+const modulesTodos = 'modules/todos/'
 export default {
   name: 'CardView',
   data() {
     return {
       listAlbums: [],
-      // listTodos: [],
+      listTodos: [],
     }
   },
   computed: {
     listAlbumsData() {
       return this.$store.getters.listAlbums
     },
-    listTodosData() {
-      return this.$store.getters.listTodos
-    },
     // listTodosData() {
-    //   return this.$store.getters[modulesTodos + 'listTodos']
+    //   return this.$store.getters.listTodos
     // },
+    listTodosData() {
+      return this.$store.getters[modulesTodos + 'listTodos']
+    },
   },
   created() {
-    this.$store.dispatch('fetchTodo', null)
+    this.$store.dispatch(modulesTodos + 'fetchTodo', null)
   },
 }
 </script>
