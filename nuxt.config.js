@@ -50,10 +50,11 @@ export default {
   // server: {
   //   port: 3030,
   // },
-  generate: {
-    fallback: true,
-  },
+  // generate: {
+  //   fallback: true,
+  // },
   target: 'static', // default is 'server'
+  mode: 'universal',
   // ssr: true,
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
