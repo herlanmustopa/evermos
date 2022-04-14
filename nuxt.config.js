@@ -54,7 +54,7 @@ export default {
   //   fallback: true,
   // },
   target: 'static', // default is 'server'
-  // mode: 'universal',
+  mode: 'universal',
   // ssr: true,
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
