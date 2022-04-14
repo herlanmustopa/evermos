@@ -12,6 +12,12 @@
     height="250px"
     class="flex justify-center gap-5 flex-wrap lg:justify-between mt-11"
   />
+  <!-- <router-link
+    class="event-link"
+    :to="{
+      name: 'EventDetails',
+    }"
+  > -->
   <div v-else class="grid-container">
     <div v-for="poh in listAlbumsData.splice(0, 10)" :key="poh.id">
       <div class="event-card">
@@ -20,8 +26,12 @@
         <div class="status">
           <img :src="poh.thumbnailUrl" />
         </div>
+        <div class="status">
+          <button class="status">Detail</button>
+        </div>
       </div>
     </div>
+    <!-- </router-link> -->
     <div v-for="poh in listTodosData" :key="poh.id">
       <div class="event-card">
         <h4 class="text-truncate">{{ poh.title }}</h4>
@@ -43,7 +53,7 @@ export default {
   data() {
     return {
       listAlbums: [],
-      listTodos: [],
+      // listTodos: [],
     }
   },
   computed: {
@@ -95,6 +105,7 @@ export default {
 .status {
   display: flex;
   justify-content: center;
+  margin-bottom: 15px;
 }
 .status-icon-r,
 .status-icon-g {
