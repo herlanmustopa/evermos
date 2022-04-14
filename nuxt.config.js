@@ -47,14 +47,14 @@ export default {
     '@nuxtjs/axios',
   ],
 
-  server: {
-    port: 3030,
-  },
+  // server: {
+  //   port: 3030,
+  // },
   generate: {
     fallback: true,
   },
   target: 'static', // default is 'server'
-  ssr: true,
+  // ssr: true,
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
