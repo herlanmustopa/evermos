@@ -13,11 +13,20 @@
     class="flex justify-center gap-5 flex-wrap lg:justify-between mt-11"
   />
   <div v-else class="grid-container">
-    <div v-for="poh in listAlbums.splice(0, 10)" :key="poh.id">
+    <div v-for="poh in listAlbumsData.splice(0, 10)" :key="poh.id">
+      <div class="event-card">
+        <h4 class="text-truncate">{{ poh.title }}</h4>
+        <h4 class="text-truncate">Data {{ listTodosData }}</h4>
+        <div class="status">
+          <img :src="poh.thumbnailUrl" />
+        </div>
+      </div>
+    </div>
+    <div v-for="poh in listTodosData" :key="poh.id">
       <div class="event-card">
         <h4 class="text-truncate">{{ poh.title }}</h4>
         <div class="status">
-          <img :src="poh.thumbnailUrl" />
+          <img :src="poh.title" />
         </div>
       </div>
     </div>
@@ -26,15 +35,30 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+// import { mapState } from 'vuex'
+
+// const modulesTodos = 'modules/todos/'
 export default {
   name: 'CardView',
-  data() {},
+  data() {
+    return {
+      listAlbums: [],
+      // listTodos: [],
+    }
+  },
   computed: {
-    ...mapState(['posts']),
-    listAlbums() {
+    listAlbumsData() {
       return this.$store.getters.listAlbums
     },
+    listTodosData() {
+      return this.$store.getters.listTodos
+    },
+    // listTodosData() {
+    //   return this.$store.getters[modulesTodos + 'listTodos']
+    // },
+  },
+  created() {
+    this.$store.dispatch('fetchTodo', null)
   },
 }
 </script>
@@ -49,6 +73,7 @@ export default {
   display: grid;
   gap: 30px 50px;
   flex-direction: row;
+  margin-right: 50px;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   /* background-color: #2196f3; */
   /* padding: 10px; */

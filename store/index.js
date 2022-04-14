@@ -5,11 +5,15 @@ import axios from '~/plugins/axios'
 export const state = () => ({
   posts: [],
   photos: [],
+  // todos: [],
 })
 
 export const getters = {
   listAlbums(state) {
     return state.posts
+  },
+  listTodos(state) {
+    return state.todos
   },
 }
 export const mutations = {
@@ -19,25 +23,30 @@ export const mutations = {
   setPhotos(state, pict) {
     state.photos = pict
   },
+  setTodos(state, todo) {
+    state.todos = todo
+  },
 }
 
 export const actions = {
   async nuxtServerInit({ commit }) {
     const { data } = await axios.get('photos')
     commit('setPosts', data)
-    const { datax } = await axios.get('todos')
-    commit('setPhotos', datax)
+    // const { datax } = await axios.get('todos')
+    // commit('setTodos', datax)
+    // console.log('INI DATAX ' + data)
   },
-  // async fetchIkk({ commit }) {
-  //   const res = await axios({
-  //     method: 'get',
-  //     url: 'https://jsonplaceholder.typicode.com/' + 'photos',
-  //     headers: {
-  //       Accept: 'application/json, text/plain, */*',
-  //       'Accept-Language': 'en-US,en;q=0.9',
-  //       'Content-Type': 'application/json',
-  //     },
-  //   })
-  //   commit('setPhotos', res.data)
-  // },
+  async fetchTodo({ commit }) {
+    const res = await axios({
+      method: 'get',
+      url: 'https://jsonplaceholder.typicode.com/' + 'todos',
+      headers: {
+        Accept: 'application/json, text/plain, */*',
+        'Accept-Language': 'en-US,en;q=0.9',
+        'Content-Type': 'application/json',
+      },
+    })
+    commit('setTodos', res.data)
+    console.log('INI TODOS ' + res.data)
+  },
 }

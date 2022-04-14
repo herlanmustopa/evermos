@@ -3,36 +3,34 @@
 // // require('dotenv').config()
 
 // export const state = () => ({
-//   photos: [],
+//   todos: [],
 // })
 
 // export const getters = {
-//   listAlmbums(state) {
-//     return state.photos
+//   listTodos(state) {
+//     return state.todos
 //   },
+//   // listTodos: (state) => state.todos,
 // }
 
 // export const mutations = {
-//   setPhotos(state, photos) {
-//     state.photos = photos
+//   setTodos(state, todo) {
+//     state.todos = todo
 //   },
 // }
 
 // export const actions = {
-//   async nuxtServerInit({ commit }) {
-//     const { data } = await axios.get('photos')
-//     commit('setPhotos', data)
-//   },
-//   async fetchIkk({ commit }) {
+//   async fetchTodo({ commit }) {
 //     const res = await axios({
 //       method: 'get',
-//       url: 'https://jsonplaceholder.typicode.com/' + 'photos',
+//       url: 'https://jsonplaceholder.typicode.com/' + 'todos',
 //       headers: {
 //         Accept: 'application/json, text/plain, */*',
 //         'Accept-Language': 'en-US,en;q=0.9',
 //         'Content-Type': 'application/json',
 //       },
 //     })
-//     commit('setPhotos', res.data)
+//     commit('setTodos', res.data)
+//     console.log('INI TODOS ' + res.data)
 //   },
 // }
