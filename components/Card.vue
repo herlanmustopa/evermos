@@ -5,75 +5,124 @@
       name: 'EventDetails',
     }"
   > -->
-  <Skeleton
+  <!-- <Skeleton
     v-if="!listAlbums"
     :count="7"
     width="200px"
     height="250px"
     class="flex justify-center gap-5 flex-wrap lg:justify-between mt-11"
-  />
+  /> -->
   <!-- <router-link
     class="event-link"
     :to="{
       name: 'EventDetails',
     }"
   > -->
-  <div v-else class="grid-container">
-    <div v-for="poh in listAlbumsData.splice(0, 10)" :key="poh.id">
+  <div class="grid-container">
+    <div v-for="poh in posts.splice(0, 10)" :key="poh.id">
       <div class="event-card">
         <h4 class="text-truncate">{{ poh.title }}</h4>
-        <h4 class="text-truncate">Data {{ listTodosData }}</h4>
         <div class="status">
-          <img :src="poh.thumbnailUrl" />
+          <img :src="poh.thumbnailUrl" class="round" />
         </div>
         <div class="status">
-          <button class="status">Detail</button>
+          <button class="status button-52" @click="$emit('open-modal')">
+            Detail
+          </button>
         </div>
       </div>
     </div>
     <!-- </router-link> -->
-    <div v-for="poh in listTodosData" :key="poh.id">
+    <!-- <div v-for="poh in listTodosData" :key="poh.id">
       <div class="event-card">
         <h4 class="text-truncate">{{ poh.title }}</h4>
         <div class="status">
           <img :src="poh.title" />
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
   <!-- </router-link> -->
 </template>
 
 <script>
-// import { mapState } from 'vuex'
+import { mapState } from 'vuex'
 
-const modulesTodos = 'modules/todos/'
+// const modulesTodos = 'modules/todos/'
 export default {
   name: 'CardView',
   data() {
     return {
-      listAlbums: [],
+      showModal: true,
+      // listAlbums: [],
       // listTodos: [],
     }
   },
-  computed: {
-    listAlbumsData() {
-      return this.$store.getters.listAlbums
-    },
-    // listTodosData() {
-    //   return this.$store.getters.listTodos
-    // },
-    listTodosData() {
-      return this.$store.getters[modulesTodos + 'listTodos']
-    },
-  },
+  computed: mapState({
+    posts: (state) => state.posts,
+  }),
+  // computed: {
+  //   ...mapState(['posts']),
+
+  //   listAlbumsData() {
+  //     return this.$store.getters.listAlbums
+  //   },
+  //   listTodosData() {
+  //     return this.$store.getters.listTodos
+  //   },
+  //   listTodosData() {
+  //     return this.$store.getters[modulesTodos + 'listTodos']
+  //   },
+  // },
   created() {
-    this.$store.dispatch(modulesTodos + 'fetchTodo', null)
+    // this.$store.dispatch(modulesTodos + 'fetchTodo', null)
+    // this.$store.dispatch('getProfile', null)
   },
 }
 </script>
 
 <style scoped>
+/* CSS */
+.button-52 {
+  font-size: 16px;
+  font-weight: 200;
+  color: #fff;
+  letter-spacing: 1px;
+  padding: 13px 20px 13px;
+  outline: 0;
+  border: 1px solid white;
+  cursor: pointer;
+  position: relative;
+  background-color: rgba(0, 0, 0, 0);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-52:after {
+  content: '';
+  background-color: blue;
+  width: 100%;
+  z-index: -1;
+  position: absolute;
+  height: 100%;
+  top: 7px;
+  left: 7px;
+  transition: 0.2s;
+  color: black;
+}
+
+.button-52:hover:after {
+  top: 0px;
+  left: 0px;
+  color: black;
+}
+
+@media (min-width: 768px) {
+  .button-52 {
+    padding: 13px 50px 13px;
+  }
+}
 .text-truncate {
   overflow: hidden;
   text-overflow: ellipsis;
@@ -121,6 +170,7 @@ export default {
 }
 img {
   margin-top: 5%;
+  border-radius: 50%;
 }
 .event-card:hover {
   transform: scale(1.01);

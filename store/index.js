@@ -14,8 +14,8 @@ export const getters = {
   },
 }
 export const mutations = {
-  setPosts(state, posts) {
-    state.posts = posts
+  setPosts(state, post) {
+    state.posts = post
   },
 }
 
@@ -23,8 +23,13 @@ export const actions = {
   async nuxtServerInit({ commit }) {
     const { data } = await axios.get('photos')
     commit('setPosts', data)
-    // const { datax } = await axios.get('todos')
-    // commit('setTodos', datax)
-    // console.log('INI DATAX ' + data)
   },
+  // async getProfile({ commit }) {
+  //   const profile = await this.$axios.$get(
+  //     'https://jsonplaceholder.typicode.com/photos'
+  //   )
+  //   commit('setPosts', profile)
+  //   // console.log('INI POSY ' + JSON.stringify(profile))
+  //   // Also app context is available using `this.app`
+  // },
 }
