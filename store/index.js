@@ -4,7 +4,7 @@ import axios from '~/plugins/axios'
 
 export const state = () => ({
   posts: [],
-  photos: [],
+  // photos: [],
   // todos: [],
 })
 
@@ -21,7 +21,7 @@ export const mutations = {
 
 export const actions = {
   async nuxtServerInit({ commit }) {
-    const { data } = await axios.get('photos')
+    const { data } = await axios.get('users')
     commit('setPosts', data)
   },
   // async getProfile({ commit }) {

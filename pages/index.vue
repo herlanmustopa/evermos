@@ -6,16 +6,17 @@
       <!-- <Card /> -->
       <div v-for="poh in posts.splice(0, 10)" :key="poh.id">
         <div class="event-card">
-          <h4 class="text-truncate">{{ poh.title }}</h4>
+          <h4 class="text-truncate">{{ poh.name }}</h4>git
+          <p>{{ poh.email }}</p>
           <div class="status">
-            <img :src="poh.thumbnailUrl" class="round" />
+            <img src="https://random.imagecdn.app/500/150" class="round" />
           </div>
           <div class="status">
             <button
               class="status button-52"
               @click="(event) => warn('Form cannot be submitted yet.', event)"
             >
-              Detail
+              {{ poh.username }}
             </button>
           </div>
         </div>
